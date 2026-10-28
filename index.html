@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesan Spesial</title>
     <style>
-        /* CSS / Tampilan */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -52,7 +51,7 @@
             justify-content: center;
         }
 
-        .btn {
+        button {
             flex: 1;
             padding: 14px 20px;
             border: 2px solid #e2e8f0;
@@ -63,12 +62,11 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn:hover {
-            background-color: #f8fafc;
-            border-color: #cbd5e1;
-            transform: translateY(-2px);
+        button:active {
+            transform: scale(0.98);
         }
 
         .btn-yes:hover {
@@ -81,7 +79,6 @@
             color: #d32f2f;
         }
 
-        /* Tampilan Respon */
         .response-card {
             display: none;
             padding: 25px 20px;
@@ -90,7 +87,7 @@
             font-size: 1.1rem;
             line-height: 1.6;
             margin-top: 20px;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out forwards;
         }
 
         .response-yes {
@@ -114,44 +111,33 @@
 <body>
 
     <div class="container">
-        <!-- Kotak Pertanyaan -->
         <div class="question-box">
             HAII mau hadiah? jawab ini dulu<br><br>
             yu love me or no?
         </div>
 
-        <!-- Tombol Pilihan -->
         <div class="buttons">
-            <button class="btn btn-yes" onclick="showResponse('yes')">YES</button>
-            <button class="btn btn-no" onclick="showResponse('no')">NO</button>
+            <button id="btn-yes" class="btn-yes">YES</button>
+            <button id="btn-no" class="btn-no">NO</button>
         </div>
 
-        <!-- Pesan Jawaban YES -->
         <div id="response-yes" class="response-card response-yes">
             AWWW LOVEEE YUU JUGAAA BEBBB<br>
             muachh muachhhhh &lt;3333
         </div>
 
-        <!-- Pesan Jawaban NO -->
         <div id="response-no" class="response-card response-no">
             HUFTTT PRENKKKKKK FAK YUUQQ
         </div>
     </div>
 
     <script>
-        // JavaScript / Logika Interaktif
-        function showResponse(type) {
-            const yesCard = document.getElementById('response-yes');
-            const noCard = document.getElementById('response-no');
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo = document.getElementById('btn-no');
+        const yesCard = document.getElementById('response-yes');
+        const noCard = document.getElementById('response-no');
 
-            if (type === 'yes') {
-                yesCard.style.display = 'block';
-                noCard.style.display = 'none';
-            } else if (type === 'no') {
-                noCard.style.display = 'block';
-                yesCard.style.display = 'none';
-            }
-        }
-    </script>
-</body>
-</html>
+        btnYes.addEventListener('click', function() {
+            yesCard.style.display = 'block';
+            noCard.style.display = 'none';
+        });
